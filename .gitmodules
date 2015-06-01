@@ -1,3 +1,6 @@
 [submodule "execwatch"]
 	path = execwatch
 	url = https://github.com/your-favorite-hacker/FreeBSD/execwatch
+[submodule "rainroot"]
+	path = rainroot
+	url = https://github.com/FreeBSD/rainroot
