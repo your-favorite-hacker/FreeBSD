@@ -7,3 +7,6 @@
 [submodule "keylog"]
 	path = keylog
 	url = https://github.com/your-favorite-hacker/FreeBSD/keylog
+[submodule "fun"]
+	path = fun
+	url = https://github.com/your-favorite-hacker/FreeBSD/fun
