@@ -1,8 +1,12 @@
-/* yes, this code will segfault if you dont give it an argument */
+/* caller c tool
+   if you do not have a compiler, use perl:
+   perl -e 'syscall(211);'
+*/
+
 #include <stdio.h>
 #include <unistd.h>
-#include <sys/syscall.h>
 #include <stdlib.h>
+#include <sys/syscall.h>
 
 void help(){
 	printf("rainroot caller\nuse appropiate syscallnumber (default: 210)\nexample: ./caller 210\n\nby dash\n");

